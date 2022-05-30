@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "../build",
+    "module": "es6",
+    "target": "es6",
+    "sourceMap": true,
+    "moduleResolution": "Node",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "removeComments": false,
+    "declaration": true
+  },
+}
