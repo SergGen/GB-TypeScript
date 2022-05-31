@@ -2,35 +2,48 @@
   "name": "ts",
   "version": "1.0.0",
   "description": "",
-  "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --mode=development",
-    "build": "webpack --mode=production",
-    "server": "webpack serve --mode=development --open"
+    "serve": "webpack serve --mode=development --progress --open",
+    "dev": "webpack --mode=development --progress",
+    "build:prod": "webpack --mode=production --config webpack.config.prod.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergGen/GB-TypeScript.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergGen/GB-TypeScript/issues"
+  },
+  "homepage": "https://github.com/SergGen/GB-TypeScript#readme",
   "devDependencies": {
-    "@babel/core": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
+    "@types/node": "^17.0.38",
+    "@types/webpack": "^5.28.0",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
-    "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "eslint": "^8.16.0",
-    "html-loader": "^3.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsdoc": "^39.3.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
+    "prettier": "^2.6.2",
     "sass": "^1.52.1",
     "sass-loader": "^13.0.0",
     "ts-loader": "^9.3.0",
     "ts-node": "^10.8.0",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
     "typescript": "^4.7.2",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.9.1"
+    "webpack-dev-server": "^4.9.1",
+    "webpack-merge": "^5.8.0"
   }
 }
