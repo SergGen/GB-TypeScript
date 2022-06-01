@@ -22,3 +22,11 @@ export function renderUserBlock ( userName: string, avatarLink: string, favorite
     `
   );
 }
+
+export function getUserData ():void {
+
+}
+
+export function getFavoritesAmount ():void {
+
+}

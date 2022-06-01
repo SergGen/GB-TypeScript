@@ -42,3 +42,11 @@ export function renderSearchFormBlock (arriveDate: string, departDate: string): 
     `
   );
 }
+
+interface SearchFormData {
+
+}
+
+interface Place {
+
+}
