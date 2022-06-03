@@ -5,7 +5,6 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import { Configuration } from 'webpack';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const config: Configuration & Record<string, unknown> = {
   mode: 'development',
   entry: path.join(__dirname, 'src', 'main.ts'),
@@ -31,6 +30,10 @@ const config: Configuration & Record<string, unknown> = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
+        options: {
+          ignoreDiagnostics: [2695]
+        },
+        exclude: /node_modules/
       },
       {
         test: /\.(sa|sc|c)ss$/,

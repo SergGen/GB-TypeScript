@@ -1,34 +1,30 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderBlock } from './lib.ts'
+/*
+import { renderBlock } from './lib'
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function renderSearchStubBlock ():void {
   renderBlock(
     'search-results-block',
     `
     <div class="before-results-block">
-      <img src="../img/start-search.png"  alt='start-search.png'/>
+      <img src="./img/start-search.png"  alt='start-search.png'/>
       <p>Чтобы начать поиск, заполните форму и&nbsp;нажмите "Найти"</p>
     </div>
     `
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function renderEmptyOrErrorSearchBlock (reasonMessage: string):void {
   renderBlock(
     'search-results-block',
     `
     <div class="no-results-block">
-      <img src="../img/no-results.png"  alt='no-results.png'/>
+      <img src="./img/no-results.png"  alt='no-results.png'/>
       <p>${reasonMessage}</p>
     </div>
     `
-  );
+  )
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function renderSearchResultsBlock ():void {
   renderBlock(
     'search-results-block',
@@ -49,7 +45,7 @@ export function renderSearchResultsBlock ():void {
         <div class="result-container">
           <div class="result-img-container">
             <div class="favorites active"></div>
-            <img class="result-img" src="../img/result-1.png" alt="result-1.png">
+            <img class="result-img" src="./img/result-1.png" alt="result-1.png">
           </div>
           <div class="result-info">
             <div class="result-info--header">
@@ -71,7 +67,7 @@ export function renderSearchResultsBlock ():void {
         <div class="result-container">
           <div class="result-img-container">
             <div class="favorites"></div>
-            <img class="result-img" src="../img/result-2.png" alt="result-2.png">
+            <img class="result-img" src="./img/result-2.png" alt="result-2.png">
           </div>
           <div class="result-info">
             <div class="result-info--header">
@@ -91,5 +87,6 @@ export function renderSearchResultsBlock ():void {
       </li>
     </ul>
     `
-  );
+  )
 }
+*/

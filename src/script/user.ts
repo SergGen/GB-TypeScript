@@ -1,32 +1,40 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderBlock } from './lib.ts'
+import { renderBlock } from './lib'
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function renderUserBlock ( userName: string, avatarLink: string, favoriteItemsAmount: number): void {
-  const favoritesCaption = favoriteItemsAmount ? favoriteItemsAmount : 'ничего нет';
-  const hasFavoriteItems = !!favoriteItemsAmount;
-
-  renderBlock(
-    'user-block',
-    `
-    <div class="header-container">
-      <img class="avatar" src="${avatarLink}" alt="userAvatar" />
+export function renderUserBlock ( params: { username: string, avatarUrl: string}, favoriteItemsAmount = 0): void {
+  const favoritesCaption = favoriteItemsAmount || 'ничего нет';
+  const hasFavoriteItems = favoriteItemsAmount !== undefined;
+  const html = `<div class="header-container">
+      <img class="avatar" src="${params.avatarUrl}" alt="userAvatar" />
       <div class="info">
-          <p class="name">${userName}</p>
+          <p class="name">${params.username}</p>
           <p class="fav">
             <i class="heart-icon${hasFavoriteItems ? ' active' : ''}"></i>${favoritesCaption}
           </p>
       </div>
-    </div>
-    `
-  );
+    </div>`;
+  renderBlock('user-block', html);
 }
 
-export function getUserData ():void {
-
+export function getUserData(key: unknown): { username: string, avatarUrl: string } {
+  let storageData: string | null;
+  if (typeof key === 'string') {
+    storageData = localStorage.getItem(key);
+  } else {
+    return { username: '', avatarUrl: '' };
+  }
+  let parsedData = { username: '', avatarUrl: '' };
+  if(storageData) {
+    parsedData = JSON.parse(storageData);
+  }
+  return parsedData;
 }
 
-export function getFavoritesAmount ():void {
-
+export function getFavoritesAmount(key: unknown):number {
+  let storageData: string | null;
+  if (typeof key === 'string') {
+    storageData = localStorage.getItem(key);
+  } else {
+    return 0;
+  }
+  return Number(storageData);
 }
