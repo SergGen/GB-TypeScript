@@ -1,0 +1,8 @@
+# Add files here to ignore them from prettier formatting
+
+/build
+/node_modules
+/.idea
+package.json
+package-lock.json
+
