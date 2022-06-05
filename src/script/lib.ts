@@ -1,14 +1,12 @@
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function renderBlock (elementId: string, html: string) {
+export function renderBlock (elementId = '', html = ''): void {
   const element = document.getElementById(elementId);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  element.innerHTML = html;
+  if(element) {
+    element.innerHTML = html;
+  }
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function renderToast (message: { type: string; text: string; } | null,
-                             action: { name: string; handler: (() => void) | null; } | null | undefined): void {
+                             action: { name: string; handler: (() => void) | null; } | null): void {
   let messageText = '';
 
   if (message !== null) {
@@ -24,14 +22,11 @@ export function renderToast (message: { type: string; text: string; } | null,
 
   const button = document.getElementById('toast-main-action');
   if (button !== null) {
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-    button.onclick = function() {
-      if (action != null && action.handler !== null) {
+    button.onclick = function(): void {
+      if (action && action.handler !== null) {
         action.handler();
       }
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      renderToast(null);
+      renderToast(null, null);
     }
   }
 }

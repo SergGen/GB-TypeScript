@@ -1,8 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderBlock } from './lib.ts'
+import { renderBlock } from './lib'
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function renderSearchStubBlock ():void {
   renderBlock(
     'search-results-block',
@@ -15,8 +12,7 @@ export function renderSearchStubBlock ():void {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function renderEmptyOrErrorSearchBlock (reasonMessage: string):void {
+/*export function renderEmptyOrErrorSearchBlock (reasonMessage: string):void {
   renderBlock(
     'search-results-block',
     `
@@ -26,10 +22,9 @@ export function renderEmptyOrErrorSearchBlock (reasonMessage: string):void {
     </div>
     `
   );
-}
+}*/
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function renderSearchResultsBlock ():void {
+/*export function renderSearchResultsBlock ():void {
   renderBlock(
     'search-results-block',
     `
@@ -92,4 +87,4 @@ export function renderSearchResultsBlock ():void {
     </ul>
     `
   );
-}
+}*/

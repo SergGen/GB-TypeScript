@@ -1,8 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderBlock } from './lib.ts'
+import { renderBlock } from './lib'
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function renderUserBlock ( userName: string, avatarLink: string, favoriteItemsAmount: number): void {
   const favoritesCaption = favoriteItemsAmount ? favoriteItemsAmount : 'ничего нет';
   const hasFavoriteItems = !!favoriteItemsAmount;

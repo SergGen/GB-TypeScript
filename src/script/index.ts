@@ -1,15 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderToast } from './lib.ts';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderSearchFormBlock } from './search-form.ts';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderSearchStubBlock } from './search-results.ts';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderUserBlock } from './user.ts';
+import { renderToast } from './lib';
+import { renderSearchFormBlock } from './search-form';
+import { renderSearchStubBlock } from './search-results';
+import { renderUserBlock } from './user';
 
 window.addEventListener('DOMContentLoaded', () => {
   renderUserBlock('Vasa', '../img/avatar.png',3);

@@ -1,8 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderBlock } from './lib.ts';
+import { renderBlock } from './lib';
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function renderSearchFormBlock (arriveDate: string, departDate: string): void {
   renderBlock(
     'search-form-block',
