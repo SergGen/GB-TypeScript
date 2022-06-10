@@ -9,10 +9,6 @@ interface SearchFormData {
   maxPrice: number | null;
 }
 
-// interface Place {
-//
-// }
-
 export function renderSearchFormBlock (arriveDate: string, departDate: string): void {
   const html = `
     <form id="search--form">
@@ -21,7 +17,7 @@ export function renderSearchFormBlock (arriveDate: string, departDate: string): 
           <div>
             <label for="city">Город</label>
             <input id="city" name="city" type="text" value="Санкт-Петербург" />
-            <input type="hidden" disabled value="59.9386,30.3141" />
+            <input type="text" disabled value="59.9386,30.3141" />
           </div>
           <div class="providers">
             <label><input type="checkbox" name="provider-homy" value="homy" checked /> Homy</label>
