@@ -1,5 +1,3 @@
-import { renderSearchResultsBlock2 } from './search-results';
-
 export function renderBlock (elementId = '', html = ''):void {
   const element = document.getElementById(elementId);
   if(element) {
@@ -35,12 +33,12 @@ export function renderToast(message: { type: string; text: string } | null,
 }
 
 interface Place {
-id: number;
+id: number | string;
 image: string;
 name: string;
 description: string;
 remoteness: number;
-bookedDates: number[];
+bookedDates: Date[];
 price: number;
 }
 
@@ -56,8 +54,6 @@ export const fetching = async (): Promise<Place[]> => {
     data = await res.json();
     places.push(data);
   }
-  // console.log(places);
   localStorage.setItem('places', JSON.stringify(places));
-  renderSearchResultsBlock2();
   return places;
 }

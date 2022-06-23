@@ -31,7 +31,7 @@ const config: Configuration & Record<string, unknown> = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-          ignoreDiagnostics: [2695, 1055]
+          ignoreDiagnostics: [2695]
         },
         exclude: /node_modules/
       },
