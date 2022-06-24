@@ -1,8 +1,9 @@
 import { renderBlock } from './lib'
 
 export function renderUserBlock ( params: { username: string, avatarUrl: string}, favoriteItemsAmount = 0): void {
+  console.log(favoriteItemsAmount);
   const favoritesCaption = favoriteItemsAmount || 'ничего нет';
-  const hasFavoriteItems = favoriteItemsAmount !== undefined;
+  const hasFavoriteItems = favoriteItemsAmount > 0;
   const html = `<div class="header-container">
       <img class="avatar" src="${params.avatarUrl}" alt="userAvatar" />
       <div class="info">

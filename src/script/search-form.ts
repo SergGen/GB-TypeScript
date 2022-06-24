@@ -1,6 +1,16 @@
 import { FlatRentSdk } from './flat-rent-sdk';
-import { fetching, renderBlock } from './lib';
+import { calcDistance, fetching, renderBlock } from './lib';
 import { DrawElem, renderSearchResultsBlock } from './search-results';
+
+interface SearchFormParams {
+  homy: string,
+  flatRent: string,
+  city: string,
+  coordinates: number[],
+  arriveDate: string,
+  departDate: string,
+  maxPrice: number
+}
 
 export function renderSearchFormBlock (arriveDate: string, departDate: string): void {
   const html = `
@@ -10,7 +20,7 @@ export function renderSearchFormBlock (arriveDate: string, departDate: string): 
           <div>
             <label for="city">Город</label>
             <input id="city" name="city" type="text" value="Санкт-Петербург" />
-            <input type="text" disabled value="59.9386,30.3141" />
+            <input type="text" name="coordinates" value="59.9386,30.3141" />
           </div>
           <div class="providers">
             <label><input type="checkbox" name="provider-homy" value="homy" checked /> Homy</label>
@@ -42,13 +52,14 @@ export function renderSearchFormBlock (arriveDate: string, departDate: string): 
   renderBlock('search-form-block', html);
 }
 
-export async function search(event: Event): Promise<DrawElem[]> {
+export async function search(event: Event): Promise<void> {
   event.preventDefault();
   const formLink = document.querySelector('#search--form');
-  const searchFormParams = {
+  const searchFormParams:SearchFormParams = {
     homy: '',
     flatRent: '',
     city: '',
+    coordinates: [0],
     arriveDate: '',
     departDate: '',
     maxPrice: 0
@@ -59,17 +70,28 @@ export async function search(event: Event): Promise<DrawElem[]> {
     searchFormParams.homy = String(formData.get('provider-homy'));
     searchFormParams.flatRent = String(formData.get('provider-flat-rent'));
     searchFormParams.city = String(formData.get('city'));
+    searchFormParams.coordinates = String(formData.get('coordinates')).split(',').map(Number);
     searchFormParams.arriveDate = String(formData.get('check-in-date'));
     searchFormParams.departDate = String(formData.get('check-out-date'));
     searchFormParams.maxPrice = Number(formData.get('price'));
   }
+  places = await searchData(searchFormParams);
+  renderSearchResultsBlock(places);
+}
 
+export const searchData = async (searchFormParams:SearchFormParams): Promise<DrawElem[]> => {
+  let places: DrawElem[] = [];
   if (searchFormParams.homy === 'homy') {
-    await fetching();
+    const fetchingParams:[string, number, number, number] = [
+      searchFormParams.coordinates.join(','),
+      Date.parse(searchFormParams.arriveDate),
+      Date.parse(searchFormParams.departDate),
+      searchFormParams.maxPrice
+    ];
+    await fetching(...fetchingParams);
     const draftData = localStorage.getItem('places');
     if (draftData) {
-       places = JSON.parse(draftData);
-       places = places.filter((el) => el.price <= searchFormParams.maxPrice);
+      places = JSON.parse(draftData);
     }
   }
   if (searchFormParams.flatRent === 'flat-rent') {
@@ -87,17 +109,11 @@ export async function search(event: Event): Promise<DrawElem[]> {
         image: el.photos[0],
         name: el.title,
         price: el.totalPrice,
-        remoteness: Number(el.coordinates[0].toFixed(2)),
+        remoteness: calcDistance(searchFormParams.coordinates, el.coordinates),
         description: el.details
       };
     });
     places = places.concat(prepDrawList);
   }
-  renderSearchResultsBlock(places);
-  // searchData(searchFormParams);
   return places;
 }
-
-// export const searchData = (foundData: SearchFormData): void => {
-// console.log(foundData);
-// }

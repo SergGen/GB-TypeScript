@@ -21,5 +21,5 @@ interface ParametersFlatRentSdk {
 export class FlatRentSdk {
   get(id:string): null | FlatElem
   search(parameters:ParametersFlatRentSdk): FlatElem[]
-  book(flatId:number, checkInDate:Date, checkOutDate:Date): number;
+  book(flatId:string, checkInDate:Date, checkOutDate:Date): Promise<number>;
 }

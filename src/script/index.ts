@@ -13,7 +13,11 @@ localStorage.setItem('user', JSON.stringify({ username: 'Vasa', avatarUrl: './im
 localStorage.setItem('favoritesAmount', '1');
 localStorage.setItem('favoriteItems', JSON.stringify(['1']));
 renderUserBlock(getUserData('user'),getFavoritesAmount('favoritesAmount'));
-renderSearchFormBlock('2022-06-23', '2022-06-30');
+const date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() + 1;
+const day = date.getDate();
+renderSearchFormBlock(`${year}-0${month}-${day}`, '2022-06-30');
 // renderSearchStubBlock();
 renderSearchResultsBlock(defaultElems);
 // renderEmptyOrErrorSearchBlock('No found !!!!!!');

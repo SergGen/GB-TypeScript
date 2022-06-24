@@ -129,7 +129,7 @@ export class FlatRentSdk {
     /**
      * Book flat.
      *
-     * @param {number} flatId
+     * @param {string} flatId
      * @param {Date} checkInDate
      * @param {Date} checkOutDate
      * @returns {number}
@@ -137,9 +137,7 @@ export class FlatRentSdk {
     book(flatId, checkInDate, checkOutDate) {
         return new Promise((resolve, reject) => {
             try {
-                const flat = this.database.find((item) => {
-                    return item.id === flatId;
-                })
+                const flat = this.database.find((item) => item.id === flatId);
 
                 if (flat == null) {
                     throw new Error('There is no flat with ID "' + flatId + '".');
