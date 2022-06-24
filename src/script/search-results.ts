@@ -61,10 +61,10 @@ export const toggleFavoriteItem = (elem: HTMLElement):void => {
     return;
   }
   const favorites = new Set(JSON.parse(strFavorites));
-  if (favorites.has(elem.dataset.id)) {
-    favorites.delete(elem.dataset.id);
+  if (favorites.has(elem.dataset['id'])) {
+    favorites.delete(elem.dataset['id']);
   } else {
-    favorites.add(elem.dataset.id);
+    favorites.add(elem.dataset['id']);
   }
   elem.classList.toggle('active');
   localStorage.setItem('favoriteItems', JSON.stringify(Array.from(favorites)));
@@ -89,8 +89,8 @@ const updateFavoritesCount = ():void => {
   renderUserBlock(getUserData('user'),getFavoritesAmount('favoritesAmount'));
 }
 
-export const resultHandler = (e):void => {
-  if (e.target.classList.contains('favorites')) {
+export const resultHandler = (e:Event):void => {
+  if (e.target instanceof HTMLElement && e.target.classList.contains('favorites')) {
     toggleFavoriteItem(e.target);
     updateFavoritesCount();
   }

@@ -63,13 +63,19 @@ export const fetching = async (
   localStorage.setItem('places', JSON.stringify(places));
 }
 
-export const calcDistance = (currentCoordinates: number[], placeCoordinates: number[]): number => {
+export const calcDistance = (currentCoordinates: number[] = [0, 0], placeCoordinates: number[] = [0,0]): number => {
   const EARTH_RADIUS = 6372795;
   // перевести координаты в радианы
-  const lat1 = currentCoordinates[0] * Math.PI / 180;
-  const lat2 = currentCoordinates[1] * Math.PI / 180;
-  const long1 = placeCoordinates[0] * Math.PI / 180;
-  const long2 = placeCoordinates[1] * Math.PI / 180;
+  let lat1 = 0;
+  let lat2 = 0;
+  let long1 = 0;
+  let long2 = 0;
+  if (currentCoordinates[0] && currentCoordinates[1] && placeCoordinates[0] && placeCoordinates[1]) {
+    lat1 = currentCoordinates[0] * Math.PI / 180;
+    lat2 = currentCoordinates[1] * Math.PI / 180;
+    long1 = placeCoordinates[0] * Math.PI / 180;
+    long2 = placeCoordinates[1] * Math.PI / 180;
+  }
 
 // косинусы и синусы широт и разницы долгот
   const cl1 = Math.cos(lat1);

@@ -2,9 +2,9 @@ import { renderToast } from './lib';
 import { renderSearchFormBlock, search } from './search-form';
 import {
   defaultElems,
-  renderEmptyOrErrorSearchBlock,
+  // renderEmptyOrErrorSearchBlock,
   renderSearchResultsBlock,
-  renderSearchStubBlock,
+  // renderSearchStubBlock,
   resultHandler
 } from './search-results';
 import { getFavoritesAmount, getUserData, renderUserBlock } from './user';

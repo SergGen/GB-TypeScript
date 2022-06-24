@@ -64,7 +64,6 @@ export async function search(event: Event): Promise<void> {
     departDate: '',
     maxPrice: 0
   };
-  let places: DrawElem[] = [];
   if (formLink instanceof HTMLFormElement) {
     const formData = new FormData(formLink);
     searchFormParams.homy = String(formData.get('provider-homy'));
@@ -75,7 +74,7 @@ export async function search(event: Event): Promise<void> {
     searchFormParams.departDate = String(formData.get('check-out-date'));
     searchFormParams.maxPrice = Number(formData.get('price'));
   }
-  places = await searchData(searchFormParams);
+  const places: DrawElem[] = await searchData(searchFormParams);
   renderSearchResultsBlock(places);
 }
 
@@ -103,17 +102,19 @@ export const searchData = async (searchFormParams:SearchFormParams): Promise<Dra
       priceLimit: searchFormParams.maxPrice,
     }
     const flatRentList = await flatRent.search(prepParamsReq);
-    const prepDrawList = flatRentList.map((el) => {
+    // let prepDrawList:DrawElem[];
+
+    const prepDrawList:DrawElem[] = flatRentList.map((el) => {
       return {
         id: el.id,
-        image: el.photos[0],
+        image: el.photos[0] ? el.photos[0] : '',
         name: el.title,
         price: el.totalPrice,
         remoteness: calcDistance(searchFormParams.coordinates, el.coordinates),
         description: el.details
       };
     });
-    places = places.concat(prepDrawList);
+    places = [...places, ...prepDrawList];
   }
   return places;
 }
